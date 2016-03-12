@@ -5,22 +5,22 @@
 .onLoad <- function(libname, pkgname)
 {
     ns <- asNamespace(pkgname)
-    seq_file <- system.file("extdata", 'gg_13_5_seq.rds',
+    seq_file <- system.file("extdata", 'gg_13_8_OTU99_seq.rds',
                             package=pkgname, lib.loc=libname)
 
-    db_taxa_file <- system.file("extdata", "gg_13_5.sqlite3",
+    db_taxa_file <- system.file("extdata", "gg_13_8_OTU99.sqlite3",
                                 package=pkgname, lib.loc=libname)
 
-    db_tree_file <- system.file("extdata", "gg_13_5_tree.rds",
+    db_tree_file <- system.file("extdata", "gg_13_8_OTU99_tree.rds",
                                 package=pkgname, lib.loc=libname)
 
     if(!file.exists(seq_file) || !file.exists(db_taxa_file)){
-        packageStartupMessage("Greengenes 13.5 database data not present, use `getGreenGenes13.5Db.R` In the package inst/scripts directory to downlod the database into the package inst/extdata/ directory and reinstall the package")
+        packageStartupMessage("Greengenes 13.8 99 OTU database data not present, use `get_greengenesDb.R` In the package inst/scripts directory to downlod the database into the package inst/extdata/ directory and reinstall the package")
     }
 
     metadata = list(URL = "https://greengenes.microbio.me",
                     DB_TYPE_NAME = "GreenGenes",
-                    DB_VERSION = "gg_13_5",
+                    DB_VERSION = "gg_13_8_OTU99",
                     ACCESSION_DATE = "March 11, 2016")
 
     ## load database sequence object
@@ -33,7 +33,7 @@
                   tree_file = db_tree_file,
                   metadata = metadata)
 
-    assign("gg13.5MgDb", ggMgDb, envir=ns)
-    namespaceExport(ns, "gg13.5MgDb")
+    assign("gg13.8.99MgDb", ggMgDb, envir=ns)
+    namespaceExport(ns, "gg13.8.99MgDb")
 
 }

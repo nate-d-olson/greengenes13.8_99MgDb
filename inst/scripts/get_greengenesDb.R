@@ -1,5 +1,5 @@
 ### =========================================================================
-### Downloading database greengenes 13_5 database
+### Downloading database greengenes 13_8 99 OTU database
 ### Assumes script is run from the inst/script directory of the package
 
 library(dplyr)
@@ -20,17 +20,18 @@ library(Biostrings)
     taxa = strsplit(taxa[,2],split="; ")
     taxa = t(sapply(taxa,function(i){i}))
     taxa = cbind(keys,taxa)
-    colnames(taxa) = c("Keys","Kingdom","Phylum","Class","Order","Family","Genus","Species")
+    colnames(taxa) = c("Keys","Kingdom","Phylum","Class",
+                       "Order","Family","Genus","Species")
     taxa = data.frame(taxa)
     dplyr::copy_to(db_con,taxa,temporary=FALSE, indexes=list(colnames(taxa)))
     file.remove(taxonomy_file)
 }
 
-getGreenGenes13.5Db <- function(
-        db_name = "gg_13_5",
-        seq_url = "https://gembox.cbcb.umd.edu/gg135/gg_13_5.fasta.gz",
-        taxa_url = "https://gembox.cbcb.umd.edu/gg135/gg_13_5_taxonomy.txt.gz",
-        tree_url = "ftp://greengenes.microbio.me/greengenes_release/gg_13_5/gg_13_5_otus_99_annotated.tree.gz"
+getGreenGenes13.8.99Db <- function(
+        db_name = "gg_13_8_OTU99",
+        seq_url = "ftp://greengenes.microbio.me/greengenes_release/gg_13_8_otus/rep_set/99_otus.fasta",
+        taxa_url = "ftp://greengenes.microbio.me/greengenes_release/gg_13_8_otus/taxonomy/99_otu_taxonomy.txt",
+        tree_url = "ftp://greengenes.microbio.me/greengenes_release/gg_13_8_otus/trees/99_otus.tree"
 ){
         # downloading database sequence data
         seq_file <- .fetch_db(seq_url)
@@ -50,4 +51,4 @@ getGreenGenes13.5Db <- function(
 
 }
 
-getGreenGenes13.5Db()
+getGreenGenes13.8.99Db()
