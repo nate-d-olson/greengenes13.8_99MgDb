@@ -10,7 +10,7 @@ Description: Metagenome annotation package with for the Greengenes 16S rRNA
     Database version 13.8 for the 99 OTU set. Contains a MgDb-class object, defined
     in the metagenomeFeatures package.
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.2.0), methods
 License: Artistic-2.0
 LazyData: true
 Imports:

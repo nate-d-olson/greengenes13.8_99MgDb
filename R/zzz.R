@@ -4,6 +4,7 @@
 
 .onLoad <- function(libname, pkgname)
 {
+    require(methods, quietly = TRUE)
     ns <- asNamespace(pkgname)
     seq_file <- system.file("extdata", 'gg_13_8_OTU99_seq.rds',
                             package=pkgname, lib.loc=libname)
@@ -33,7 +34,7 @@
                   tree_file = db_tree_file,
                   metadata = metadata)
 
-    assign("gg13.8.99MgDb", ggMgDb, envir=ns)
-    namespaceExport(ns, "gg13.8.99MgDb")
+    assign("gg13.8OTU99MgDb", ggMgDb, envir=ns)
+    namespaceExport(ns, "gg13.8OTU99MgDb")
 
 }
